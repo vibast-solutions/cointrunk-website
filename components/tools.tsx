@@ -33,7 +33,7 @@ const tools = [
       'Low transaction fees',
     ],
     ctaText: 'Start Accepting Payments',
-    ctaLink: 'https://pay.cointrunk.io',
+    ctaLink: '/payment-processor',
   },
   {
     icon: Rocket,

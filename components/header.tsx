@@ -7,10 +7,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 const navLinks = [
-  { name: 'About', href: '#about' },
-  { name: 'Tools', href: '#tools' },
-  { name: 'Why BeeZee', href: '#why-beezee' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'About', href: '/#about' },
+  { name: 'Tools', href: '/#tools' },
+  { name: 'Why BeeZee', href: '/#why-beezee' },
+  { name: 'Contact', href: '/#contact' },
 ]
 
 export default function Header() {

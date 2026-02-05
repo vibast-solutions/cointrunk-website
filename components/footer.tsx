@@ -33,8 +33,8 @@ const footerLinks: FooterLinkGroup[] = [
   {
     title: 'Company',
     links: [
-      { name: 'About', href: '#about', external: false },
-      { name: 'Contact', href: '#contact', external: false },
+      { name: 'About', href: '/#about', external: false },
+      { name: 'Contact', href: '/#contact', external: false },
     ],
   },
 ]

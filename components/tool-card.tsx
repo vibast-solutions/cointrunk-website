@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { ArrowRight, Clock } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
+import Link from 'next/link'
 
 interface ToolCardProps {
   icon: LucideIcon
@@ -62,18 +63,31 @@ export default function ToolCard({
 
       {/* CTA */}
       {ctaLink && ctaText && !comingSoon && (
-        <a
-          href={ctaLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-accent hover:text-accent-hover font-semibold transition-colors group/link"
-        >
-          {ctaText}
-          <ArrowRight
-            size={18}
-            className="group-hover/link:translate-x-1 transition-transform"
-          />
-        </a>
+        ctaLink.startsWith('/') ? (
+          <Link
+            href={ctaLink}
+            className="inline-flex items-center gap-2 text-accent hover:text-accent-hover font-semibold transition-colors group/link"
+          >
+            {ctaText}
+            <ArrowRight
+              size={18}
+              className="group-hover/link:translate-x-1 transition-transform"
+            />
+          </Link>
+        ) : (
+          <a
+            href={ctaLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-accent hover:text-accent-hover font-semibold transition-colors group/link"
+          >
+            {ctaText}
+            <ArrowRight
+              size={18}
+              className="group-hover/link:translate-x-1 transition-transform"
+            />
+          </a>
+        )
       )}
 
       {comingSoon && (
