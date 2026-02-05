@@ -52,7 +52,10 @@ website/
 ├── app/
 │   ├── layout.tsx      # Root layout, metadata, SEO
 │   ├── page.tsx        # Home page
-│   └── globals.css     # Global styles
+│   ├── globals.css     # Global styles
+│   └── payment-processor/
+│       ├── layout.tsx  # Payment processor SEO metadata
+│       └── page.tsx    # Payment processor landing page
 ├── components/
 │   ├── header.tsx      # Navigation header
 │   ├── footer.tsx      # Site footer

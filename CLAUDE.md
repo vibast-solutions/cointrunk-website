@@ -35,14 +35,17 @@ website/
 ├── app/
 │   ├── layout.tsx      # Root layout, metadata, SEO, JSON-LD
 │   ├── page.tsx        # Home page (composes all sections)
-│   └── globals.css     # Global styles, Tailwind imports
+│   ├── globals.css     # Global styles, Tailwind imports
+│   └── payment-processor/
+│       ├── layout.tsx  # Payment processor SEO metadata
+│       └── page.tsx    # Payment processor landing page
 ├── components/
-│   ├── header.tsx      # Sticky navigation
+│   ├── header.tsx      # Sticky navigation (uses /#anchor links for cross-page compat)
 │   ├── footer.tsx      # Footer with links, emails, social
 │   ├── hero.tsx        # Hero section with animated gradient
 │   ├── about.tsx       # Mission/about section
 │   ├── tools.tsx       # Tools showcase section
-│   ├── tool-card.tsx   # Individual tool card component
+│   ├── tool-card.tsx   # Individual tool card (supports internal + external links)
 │   ├── why-beezee.tsx  # BeeZee partnership section
 │   └── custom-dev.tsx  # Custom development services CTA
 ├── lib/
@@ -82,8 +85,11 @@ Defined in `tailwind.config.ts`:
 **Legal Entity:**
 - Vibast Solutions SRL (https://vibast.ro)
 
-## Page Sections (in order)
+## Pages
 
+### Home (`/`)
+
+Sections in order:
 1. **Header** - Sticky nav with logo and links (About, Tools, Why BeeZee, Contact)
 2. **Hero** - Main headline, subtext, CTA buttons
 3. **About** - Mission statement, company values
@@ -92,9 +98,19 @@ Defined in `tailwind.config.ts`:
 6. **Custom Dev** - Blockchain development services CTA
 7. **Footer** - Links, emails, social, copyright, vibast.ro mention
 
+### Payment Processor (`/payment-processor`)
+
+Dedicated landing page for the payment processor product. Reuses Header and Footer.
+
+Sections: Hero (Coming Soon), Features (6 cards), Supported Assets (BZE, USDC, PHOTON, ATONE, VDL), CTA Banner (Coming Soon).
+
+The homepage tool card links to this page internally; CTA buttons on this page will link to `https://pay.cointrunk.io` once the app is live (currently disabled with "Coming Soon").
+
 ## Notes
 
-- Single-page website (all sections on home page)
+- Multi-page website with shared Header/Footer
+- Header nav uses `/#anchor` links so they work from any page
+- tool-card.tsx detects internal vs external links (Next.js `<Link>` for `/` paths, `<a target="_blank">` for `http`)
 - Dark theme throughout
 - Smooth scroll navigation
 - Framer Motion for scroll animations
