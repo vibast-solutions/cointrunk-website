@@ -2,7 +2,7 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Store, Coins, ShoppingCart, TrendingDown, ArrowRight, Link2, RefreshCw, Clock } from 'lucide-react'
+import { Store, Coins, ShoppingCart, TrendingDown, ArrowRight, Link2, RefreshCw, Clock, Check } from 'lucide-react'
 import Image from 'next/image'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
@@ -59,6 +59,8 @@ export default function PaymentProcessorPage() {
   const featuresInView = useInView(featuresRef, { once: true, margin: '-100px' })
   const assetsRef = useRef(null)
   const assetsInView = useInView(assetsRef, { once: true, margin: '-100px' })
+  const pricingRef = useRef(null)
+  const pricingInView = useInView(pricingRef, { once: true, margin: '-100px' })
   const ctaRef = useRef(null)
   const ctaInView = useInView(ctaRef, { once: true, margin: '-50px' })
 
@@ -276,6 +278,177 @@ export default function PaymentProcessorPage() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section className="py-24 relative">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/4 left-0 w-[400px] h-[400px] bg-primary/20 rounded-full blur-3xl -translate-x-1/2" />
+          <div className="absolute bottom-1/4 right-0 w-[300px] h-[300px] bg-accent/15 rounded-full blur-3xl translate-x-1/2" />
+        </div>
+
+        <div className="section-container relative z-10" ref={pricingRef}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={pricingInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-3xl mx-auto mb-16"
+          >
+            <span className="text-accent font-semibold text-sm uppercase tracking-wider">
+              Pricing
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6">
+              Simple, Transparent Pricing
+            </h2>
+            <p className="text-white/60 text-lg">
+              Start free and upgrade when you need more. No hidden fees.
+            </p>
+            <div className="mt-4 inline-flex items-center gap-2 bg-accent/20 text-accent px-4 py-2 rounded-full text-sm font-semibold">
+              <span>Launch Promotion: 50% OFF Premium</span>
+            </div>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Free Plan */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={pricingInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="card p-8"
+            >
+              <h3 className="text-2xl font-bold mb-2">Free</h3>
+              <p className="text-4xl font-bold mb-1">
+                $0
+                <span className="text-lg font-normal text-white/60">/month</span>
+              </p>
+              <p className="text-white/60 text-sm mb-6">Perfect for getting started</p>
+
+              <div className="space-y-6 mb-8">
+                <div>
+                  <h4 className="text-sm font-semibold text-white/80 mb-3">Limits</h4>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-3">
+                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
+                      <span className="text-white/70 text-sm">30 payment links / month</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
+                      <span className="text-white/70 text-sm">3,000 transactions / month</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
+                      <span className="text-white/70 text-sm">24 payouts / day</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="text-sm font-semibold text-white/80 mb-3">Fees</h4>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-3">
+                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
+                      <span className="text-white/70 text-sm">0.1% payment fee (max $1)</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
+                      <span className="text-white/70 text-sm">0.1% settlement fee (max $1)</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
+                      <span className="text-white/70 text-sm">Exchange fee on conversions</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
+                      <span className="text-white/70 text-sm">Blockchain tx fee on payouts</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <span className="btn-secondary w-full justify-center opacity-60 cursor-not-allowed pointer-events-none inline-flex items-center gap-2">
+                <Clock size={18} />
+                Coming Soon
+              </span>
+            </motion.div>
+
+            {/* Premium Plan */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={pricingInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="card p-8 border-accent/50 relative overflow-hidden"
+            >
+              <div className="absolute top-4 right-4 bg-accent text-white px-3 py-1 rounded-full text-xs font-semibold">
+                50% OFF
+              </div>
+
+              <h3 className="text-2xl font-bold mb-2">Premium</h3>
+              <p className="text-4xl font-bold mb-1">
+                <span className="text-xl line-through text-white/40 mr-2">$10</span>
+                $5
+                <span className="text-lg font-normal text-white/60">/month</span>
+              </p>
+              <p className="text-white/60 text-sm mb-1">or $4/month billed annually</p>
+              <p className="text-accent text-xs mb-6">Launch promotion pricing</p>
+
+              <div className="space-y-6 mb-8">
+                <div>
+                  <h4 className="text-sm font-semibold text-white/80 mb-3">Limits</h4>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-3">
+                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
+                      <span className="text-white/70 text-sm">Unlimited payment links</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
+                      <span className="text-white/70 text-sm">Unlimited transactions</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
+                      <span className="text-white/70 text-sm">Unlimited payouts</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="text-sm font-semibold text-white/80 mb-3">Fees</h4>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-3">
+                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
+                      <span className="text-white/70 text-sm">1,000 fee-free payments / month</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
+                      <span className="text-white/70 text-sm">1,000 fee-free settlements / month</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
+                      <span className="text-white/70 text-sm">No blockchain tx fee on payouts</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
+                      <span className="text-white/70 text-sm">Exchange fee on conversions</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <span className="btn-primary w-full justify-center opacity-60 cursor-not-allowed pointer-events-none inline-flex items-center gap-2">
+                <Clock size={18} />
+                Coming Soon
+              </span>
+            </motion.div>
+          </div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={pricingInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="text-center text-white/40 text-sm mt-8 max-w-2xl mx-auto"
+          >
+            Exchange fees apply when settling in a different asset than received. All plans include API access, webhook integrations, and settlement in any supported coin.
+          </motion.p>
         </div>
       </section>
 
