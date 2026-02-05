@@ -2,7 +2,7 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Store, Coins, ShoppingCart, TrendingDown, ArrowRight, ExternalLink, Link2, RefreshCw } from 'lucide-react'
+import { Store, Coins, ShoppingCart, TrendingDown, ArrowRight, Link2, RefreshCw, Clock } from 'lucide-react'
 import Image from 'next/image'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
@@ -149,15 +149,10 @@ export default function PaymentProcessorPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.8 }}
             >
-              <a
-                href="https://pay.cointrunk.io"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary inline-flex items-center gap-2"
-              >
-                Launch Payment App
-                <ExternalLink size={18} />
-              </a>
+              <span className="btn-primary inline-flex items-center gap-2 opacity-60 cursor-not-allowed pointer-events-none">
+                <Clock size={18} />
+                Coming Soon
+              </span>
             </motion.div>
           </motion.div>
         </div>
@@ -304,15 +299,10 @@ export default function PaymentProcessorPage() {
               Start accepting BZE and BeeZee assets today. Set up your merchant account and
               integrate our payment processor in minutes.
             </p>
-            <a
-              href="https://pay.cointrunk.io"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary inline-flex items-center gap-2"
-            >
-              Get Started Now
-              <ExternalLink size={18} />
-            </a>
+            <span className="btn-primary inline-flex items-center gap-2 opacity-60 cursor-not-allowed pointer-events-none">
+              <Clock size={18} />
+              Coming Soon
+            </span>
           </motion.div>
         </div>
       </section>
