@@ -4,7 +4,7 @@ Official website for CoinTrunk - a Web3 tools company building on the BeeZee blo
 
 ## Tech Stack
 
-- **Framework:** Next.js 14 (App Router)
+- **Framework:** Next.js 15 (App Router)
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS
 - **Animations:** Framer Motion
@@ -76,13 +76,38 @@ website/
 
 ## Deployment
 
-The site is configured for static export (`output: 'export'` in `next.config.js`). Deploy the `out` directory to any static hosting provider:
+The site is configured for static export (`output: 'export'` in `next.config.js`). Build the project and deploy the `out` directory to any static hosting provider.
 
-- Vercel
-- Netlify
-- GitHub Pages
-- AWS S3 + CloudFront
-- Any static file server
+### Nginx
+
+```nginx
+server {
+    listen 80;
+    server_name cointrunk.io www.cointrunk.io;
+
+    root /var/www/cointrunk/out;
+    index index.html;
+
+    location / {
+        try_files $uri $uri.html $uri/ =404;
+    }
+
+    # cache static assets
+    location /_next/static/ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
+
+    location ~* \.(ico|png|jpg|jpeg|svg|webp|gif|woff2?)$ {
+        expires 30d;
+        add_header Cache-Control "public";
+    }
+
+    error_page 404 /404.html;
+}
+```
+
+`try_files $uri $uri.html $uri/ =404` handles Next.js clean URLs (e.g. `/payment-processor` serves `payment-processor.html`).
 
 ## Environment
 
