@@ -348,11 +348,11 @@ export default function PaymentProcessorPage() {
                   <ul className="space-y-2">
                     <li className="flex items-start gap-3">
                       <Check size={18} className="text-accent shrink-0 mt-0.5" />
-                      <span className="text-white/70 text-sm">0.1% payment fee (max $1)</span>
+                      <span className="text-white/70 text-sm">0.1% payment fee (max $5)</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <Check size={18} className="text-accent shrink-0 mt-0.5" />
-                      <span className="text-white/70 text-sm">0.1% settlement fee (max $1)</span>
+                      <span className="text-white/70 text-sm">0.1% settlement fee (max $5)</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <Check size={18} className="text-accent shrink-0 mt-0.5" />
@@ -423,6 +423,10 @@ export default function PaymentProcessorPage() {
                     <li className="flex items-start gap-3">
                       <Check size={18} className="text-accent shrink-0 mt-0.5" />
                       <span className="text-white/70 text-sm">1,000 fee-free settlements / month</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
+                      <span className="text-white/70 text-sm">After free tier: 0.1% fee (max $1)</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <Check size={18} className="text-accent shrink-0 mt-0.5" />
