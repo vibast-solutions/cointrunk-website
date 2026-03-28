@@ -304,9 +304,6 @@ export default function PaymentProcessorPage() {
             <p className="text-white/60 text-lg">
               Start free and upgrade when you need more. No hidden fees.
             </p>
-            <div className="mt-4 inline-flex items-center gap-2 bg-accent/20 text-accent px-4 py-2 rounded-full text-sm font-semibold">
-              <span>Launch Promotion: 50% OFF Premium</span>
-            </div>
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch">
@@ -384,19 +381,13 @@ export default function PaymentProcessorPage() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="card p-8 border-accent/50 relative overflow-hidden flex flex-col"
             >
-              <div className="absolute top-4 right-4 bg-accent text-white px-3 py-1 rounded-full text-xs font-semibold">
-                50% OFF
-              </div>
-
               <h3 className="text-2xl font-bold mb-2">Premium</h3>
               <div className="min-h-[5.5rem]">
                 <p className="text-4xl font-bold mb-1">
-                  <span className="text-xl line-through text-white/40 mr-2">$10</span>
-                  $5
+                  $10
                   <span className="text-lg font-normal text-white/60">/month</span>
                 </p>
-                <p className="text-white/60 text-sm mb-1">or $4/month billed annually</p>
-                <p className="text-accent text-xs">Launch promotion pricing</p>
+                <p className="text-white/60 text-sm">Discounted for yearly billing</p>
               </div>
 
               <div className="space-y-6 mb-8">
