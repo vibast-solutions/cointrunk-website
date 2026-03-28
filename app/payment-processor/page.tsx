@@ -415,6 +415,10 @@ export default function PaymentProcessorPage() {
                       <Check size={18} className="text-accent shrink-0 mt-0.5" />
                       <span className="text-white/70 text-sm">Unlimited payouts</span>
                     </li>
+                    <li className="flex items-start gap-3">
+                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
+                      <span className="text-white/70 text-sm">Transactional emails</span>
+                    </li>
                   </ul>
                 </div>
 
