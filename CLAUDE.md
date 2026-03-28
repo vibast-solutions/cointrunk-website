@@ -8,7 +8,7 @@ CoinTrunk is a Web3 tools company building on the BeeZee blockchain. This is the
 
 ## Tech Stack
 
-- **Framework:** Next.js 14 (App Router)
+- **Framework:** Next.js 15 (App Router)
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS
 - **Animations:** Framer Motion
@@ -104,13 +104,13 @@ Dedicated landing page for the payment processor product. Reuses Header and Foot
 
 Sections: Hero (Coming Soon), Features (6 cards), Supported Assets (BZE, USDC, PHOTON, ATONE, VDL), CTA Banner (Coming Soon).
 
-The homepage tool card links to this page internally; CTA buttons on this page will link to `https://pay.cointrunk.io` once the app is live (currently disabled with "Coming Soon").
+The homepage tool card links to this page internally. The payment-processor page currently shows a disabled `Coming Soon` call to action in the UI.
 
 ## Notes
 
 - Multi-page website with shared Header/Footer
 - Header nav uses `/#anchor` links so they work from any page
-- tool-card.tsx detects internal vs external links (Next.js `<Link>` for `/` paths, `<a target="_blank">` for `http`)
+- `tool-card.tsx` detects internal vs external links (Next.js `<Link>` for `/` paths, `<a target="_blank">` for `http`)
 - Dark theme throughout
 - Smooth scroll navigation
 - Framer Motion for scroll animations

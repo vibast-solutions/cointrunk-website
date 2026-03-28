@@ -309,20 +309,22 @@ export default function PaymentProcessorPage() {
             </div>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch">
             {/* Free Plan */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={pricingInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="card p-8"
+              className="card p-8 flex flex-col"
             >
               <h3 className="text-2xl font-bold mb-2">Free</h3>
-              <p className="text-4xl font-bold mb-1">
-                $0
-                <span className="text-lg font-normal text-white/60">/month</span>
-              </p>
-              <p className="text-white/60 text-sm mb-6">Perfect for getting started</p>
+              <div className="min-h-[5.5rem]">
+                <p className="text-4xl font-bold mb-1">
+                  $0
+                  <span className="text-lg font-normal text-white/60">/month</span>
+                </p>
+                <p className="text-white/60 text-sm">Perfect for getting started</p>
+              </div>
 
               <div className="space-y-6 mb-8">
                 <div>
@@ -341,6 +343,7 @@ export default function PaymentProcessorPage() {
                       <span className="text-white/70 text-sm">24 payouts / day</span>
                     </li>
                   </ul>
+                  <p className="text-white/40 text-xs mt-3">Limits reset each month</p>
                 </div>
 
                 <div>
@@ -366,10 +369,12 @@ export default function PaymentProcessorPage() {
                 </div>
               </div>
 
-              <span className="btn-secondary w-full justify-center opacity-60 cursor-not-allowed pointer-events-none inline-flex items-center gap-2">
-                <Clock size={18} />
-                Coming Soon
-              </span>
+              <div className="mt-auto">
+                <span className="btn-secondary w-full justify-center opacity-60 cursor-not-allowed pointer-events-none inline-flex items-center gap-2">
+                  <Clock size={18} />
+                  Coming Soon
+                </span>
+              </div>
             </motion.div>
 
             {/* Premium Plan */}
@@ -377,20 +382,22 @@ export default function PaymentProcessorPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={pricingInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="card p-8 border-accent/50 relative overflow-hidden"
+              className="card p-8 border-accent/50 relative overflow-hidden flex flex-col"
             >
               <div className="absolute top-4 right-4 bg-accent text-white px-3 py-1 rounded-full text-xs font-semibold">
                 50% OFF
               </div>
 
               <h3 className="text-2xl font-bold mb-2">Premium</h3>
-              <p className="text-4xl font-bold mb-1">
-                <span className="text-xl line-through text-white/40 mr-2">$10</span>
-                $5
-                <span className="text-lg font-normal text-white/60">/month</span>
-              </p>
-              <p className="text-white/60 text-sm mb-1">or $4/month billed annually</p>
-              <p className="text-accent text-xs mb-6">Launch promotion pricing</p>
+              <div className="min-h-[5.5rem]">
+                <p className="text-4xl font-bold mb-1">
+                  <span className="text-xl line-through text-white/40 mr-2">$10</span>
+                  $5
+                  <span className="text-lg font-normal text-white/60">/month</span>
+                </p>
+                <p className="text-white/60 text-sm mb-1">or $4/month billed annually</p>
+                <p className="text-accent text-xs">Launch promotion pricing</p>
+              </div>
 
               <div className="space-y-6 mb-8">
                 <div>
@@ -431,13 +438,16 @@ export default function PaymentProcessorPage() {
                       <span className="text-white/70 text-sm">Exchange fee on conversions</span>
                     </li>
                   </ul>
+                  <p className="text-white/40 text-xs mt-3">Limits reset each billing cycle</p>
                 </div>
               </div>
 
-              <span className="btn-primary w-full justify-center opacity-60 cursor-not-allowed pointer-events-none inline-flex items-center gap-2">
-                <Clock size={18} />
-                Coming Soon
-              </span>
+              <div className="mt-auto">
+                <span className="btn-primary w-full justify-center opacity-60 cursor-not-allowed pointer-events-none inline-flex items-center gap-2">
+                  <Clock size={18} />
+                  Coming Soon
+                </span>
+              </div>
             </motion.div>
           </div>
 
