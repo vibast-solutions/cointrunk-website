@@ -2,59 +2,102 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Store, Coins, ShoppingCart, TrendingDown, ArrowRight, Link2, RefreshCw, Clock, Check } from 'lucide-react'
+import {
+  Wallet,
+  Coins,
+  MousePointerClick,
+  Webhook,
+  ArrowRight,
+  Link2,
+  BellRing,
+  Clock,
+  Check,
+  ShieldCheck,
+  Signature,
+} from 'lucide-react'
 import Image from 'next/image'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
 
+const steps = [
+  {
+    icon: Signature,
+    title: 'Add your addresses',
+    description:
+      'Register the BZE addresses you want to be paid into. You prove each one is yours by signing a short message in your wallet: no transaction, no fee.',
+  },
+  {
+    icon: Link2,
+    title: 'Create a payment',
+    description:
+      'Share a one-time payment link, or create payments from your shop through our API. You set the price for every coin you accept.',
+  },
+  {
+    icon: Wallet,
+    title: 'Get paid directly',
+    description:
+      'Your customer pays straight into your wallet. We recognise the payment on chain and notify you by webhook, dashboard and email.',
+  },
+]
+
 const features = [
   {
-    icon: Store,
-    title: 'Easy Merchant Integration',
+    icon: ShieldCheck,
+    title: 'Non-Custodial by Design',
     description:
-      'Get started in minutes with our simple setup process. No complex configurations needed — just create your merchant account, set up your payment preferences, and start accepting crypto payments right away.',
-  },
-  {
-    icon: Coins,
-    title: 'BZE & BeeZee Asset Support',
-    description:
-      'Accept BZE, the native coin of the BeeZee blockchain, along with a growing list of IBC tokens available on the network. Offer your customers flexible payment options across the BeeZee ecosystem.',
-  },
-  {
-    icon: ShoppingCart,
-    title: 'Intuitive Checkout Flow',
-    description:
-      'Provide your customers with a smooth, familiar checkout experience. Our payment flow is designed to be simple and straightforward, reducing friction and increasing successful transactions.',
-  },
-  {
-    icon: TrendingDown,
-    title: 'Low Transaction Fees',
-    description:
-      'Benefit from the BeeZee blockchain\'s efficient consensus mechanism. Transaction fees are a fraction of traditional payment processors, letting you keep more of your revenue.',
+      'Payments go from your customer\'s wallet straight into yours. We never hold your keys or your coins, so there is nothing of yours sitting with us and nothing to withdraw.',
   },
   {
     icon: Link2,
     title: 'One-Time Payment Links',
     description:
-      'No storefront needed — generate a simple payment link and share it with your client. Perfect for freelancers, service providers, or anyone who needs to get paid quickly without a full merchant setup.',
+      'No storefront needed: create a link and send it to your client. Perfect for freelancers, invoices and service providers. Links stay open until they are paid, unless you set an expiry date.',
   },
   {
-    icon: RefreshCw,
-    title: 'Settle in Any Supported Coin',
+    icon: Webhook,
+    title: 'API & Webhooks',
     description:
-      'Choose which coin you want to receive, regardless of what your customer pays with. Payments are automatically settled in the supported asset of your choice, giving you full control over your revenue.',
+      'Create payments from your backend with your own order reference and send customers to a hosted checkout. Signed webhooks tell your shop the moment a payment is completed.',
+  },
+  {
+    icon: MousePointerClick,
+    title: 'One-Click Checkout',
+    description:
+      'Customers connect Keplr or Leap and pay in one click, with the amount and payment reference filled in for them. Paying by hand works too, with every detail ready to copy.',
+  },
+  {
+    icon: Coins,
+    title: 'Your Price, Per Coin',
+    description:
+      'Accept BZE and other BeeZee assets, and set your own amount for each one, for example 25 USDC or 5,000 BZE. Your customer picks the coin they want to pay with.',
+  },
+  {
+    icon: BellRing,
+    title: 'Nothing Slips Through',
+    description:
+      'Sent too little? The customer can top up right on the checkout page. Late payments, wrong coins or a forgotten payment reference are highlighted in your dashboard for you to review.',
   },
 ]
 
-const supportedAssets = [
+const exampleAssets = [
   { name: 'BZE', description: 'Native BeeZee coin', highlight: true },
-  { name: 'USDC', description: 'Stablecoin via BeeZee (IBC) or Noble', highlight: false },
+  { name: 'USDC', description: 'Stablecoin on BeeZee via IBC', highlight: false },
   { name: 'PHOTON', description: 'AtomOne fee token', highlight: false },
-  { name: 'ATONE', description: 'AtomOne governance token', highlight: false },
   { name: 'VDL', description: 'Vidulum token', highlight: false },
 ]
 
+const includedInAllPlans = [
+  'No fee on your payments',
+  'Payments straight to your own wallet',
+  'Payment links, API and signed webhooks',
+  'Up to 100 receiving addresses',
+  'Dashboard with payment history',
+  'Email notifications',
+]
+
 export default function PaymentProcessorPage() {
+  const stepsRef = useRef(null)
+  const stepsInView = useInView(stepsRef, { once: true, margin: '-100px' })
   const featuresRef = useRef(null)
   const featuresInView = useInView(featuresRef, { once: true, margin: '-100px' })
   const assetsRef = useRef(null)
@@ -142,8 +185,8 @@ export default function PaymentProcessorPage() {
               transition={{ delay: 0.5, duration: 0.8 }}
               className="text-lg sm:text-xl text-white/70 max-w-2xl mx-auto mb-10"
             >
-              Accept BZE and BeeZee blockchain assets with ease. A simple, powerful payment solution
-              for merchants and businesses in the Web3 ecosystem.
+              Accept BZE and BeeZee blockchain assets straight into your own wallet. We never hold
+              your funds: we watch the chain, recognise your payments and keep you informed.
             </motion.p>
 
             <motion.div
@@ -157,6 +200,49 @@ export default function PaymentProcessorPage() {
               </span>
             </motion.div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section className="py-24 relative">
+        <div className="section-container relative z-10" ref={stepsRef}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={stepsInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-3xl mx-auto mb-16"
+          >
+            <span className="text-accent font-semibold text-sm uppercase tracking-wider">
+              How It Works
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6">
+              Your Wallet, Your Coins
+            </h2>
+            <p className="text-white/60 text-lg">
+              Three steps between you and your first payment, and your funds never pass through us.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {steps.map((step, index) => (
+              <motion.div
+                key={step.title}
+                initial={{ opacity: 0, y: 30 }}
+                animate={stepsInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.2 + index * 0.15 }}
+                className="card relative"
+              >
+                <span className="absolute top-6 right-6 text-5xl font-bold text-white/10">
+                  {index + 1}
+                </span>
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/20 to-primary-light/20 flex items-center justify-center mb-6">
+                  <step.icon className="text-accent" size={28} />
+                </div>
+                <h3 className="text-xl font-bold mb-3">{step.title}</h3>
+                <p className="text-white/60">{step.description}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -182,7 +268,7 @@ export default function PaymentProcessorPage() {
             </h2>
             <p className="text-white/60 text-lg">
               Built for simplicity and reliability, our payment processor makes it easy to accept
-              crypto payments on the BeeZee blockchain.
+              crypto payments on the BeeZee blockchain while you stay in full control of your funds.
             </p>
           </motion.div>
 
@@ -224,7 +310,7 @@ export default function PaymentProcessorPage() {
               Supported Assets
             </h2>
             <p className="text-white/60 text-lg">
-              Powered by the BeeZee blockchain — a fast, low-fee network in the Cosmos ecosystem.
+              Powered by the BeeZee blockchain: a fast, low-fee network in the Cosmos ecosystem.
             </p>
           </motion.div>
 
@@ -245,9 +331,10 @@ export default function PaymentProcessorPage() {
               />
             </div>
             <p className="text-white/60 mb-6">
-              BeeZee is a Cosmos SDK-based blockchain with fast finality, low transaction costs, and
-              full IBC interoperability. It provides the ideal infrastructure for seamless crypto
-              payments.
+              Accept BZE and any asset with deep liquidity against BZE on the BeeZee DEX, the same
+              rule the network uses to accept a coin for transaction fees. As liquidity grows, so
+              does the list of coins you can accept. Payments are final as soon as their block is
+              committed.
             </p>
             <a
               href="https://getbze.com"
@@ -260,15 +347,15 @@ export default function PaymentProcessorPage() {
             </a>
           </motion.div>
 
-          {/* Supported Assets Grid */}
+          {/* Example Assets Grid */}
           <div className="flex flex-wrap justify-center gap-6 max-w-4xl mx-auto">
-            {supportedAssets.map((asset, index) => (
+            {exampleAssets.map((asset, index) => (
               <motion.div
                 key={asset.name}
                 initial={{ opacity: 0, y: 20 }}
                 animate={assetsInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                className="card text-center w-full sm:w-[calc(33.333%-1rem)]"
+                className="card text-center w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(25%-1.125rem)]"
               >
                 <div className={`w-12 h-12 rounded-full mx-auto mb-4 flex items-center justify-center ${asset.highlight ? 'bg-accent/20' : 'bg-primary-light/20'}`}>
                   <Coins size={24} className={asset.highlight ? 'text-accent' : 'text-primary-light'} />
@@ -278,6 +365,15 @@ export default function PaymentProcessorPage() {
               </motion.div>
             ))}
           </div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={assetsInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="text-center text-white/40 text-sm mt-8"
+          >
+            Examples only: the list of accepted coins follows liquidity on the BeeZee DEX.
+          </motion.p>
         </div>
       </section>
 
@@ -299,10 +395,11 @@ export default function PaymentProcessorPage() {
               Pricing
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6">
-              Simple, Transparent Pricing
+              No Cut of Your Payments
             </h2>
             <p className="text-white/60 text-lg">
-              Start free and upgrade when you need more. No hidden fees.
+              We never take a percentage of what you earn. Start free, and pick a package by how
+              many payments you receive each month.
             </p>
           </motion.div>
 
@@ -323,48 +420,24 @@ export default function PaymentProcessorPage() {
                 <p className="text-white/60 text-sm">Perfect for getting started</p>
               </div>
 
-              <div className="space-y-6 mb-8">
-                <div>
-                  <h4 className="text-sm font-semibold text-white/80 mb-3">Limits</h4>
-                  <ul className="space-y-2">
-                    <li className="flex items-start gap-3">
-                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
-                      <span className="text-white/70 text-sm">30 payment links / month</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
-                      <span className="text-white/70 text-sm">3,000 transactions / month</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
-                      <span className="text-white/70 text-sm">24 payouts / day</span>
-                    </li>
-                  </ul>
-                  <p className="text-white/40 text-xs mt-3">Limits reset each month</p>
-                </div>
-
-                <div>
-                  <h4 className="text-sm font-semibold text-white/80 mb-3">Fees</h4>
-                  <ul className="space-y-2">
-                    <li className="flex items-start gap-3">
-                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
-                      <span className="text-white/70 text-sm">0.1% payment fee (max $5)</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
-                      <span className="text-white/70 text-sm">0.1% settlement fee (max $5)</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
-                      <span className="text-white/70 text-sm">Exchange fee on conversions</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
-                      <span className="text-white/70 text-sm">Blockchain tx fee on payouts</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+              <ul className="space-y-2 mb-8">
+                <li className="flex items-start gap-3">
+                  <Check size={18} className="text-accent shrink-0 mt-0.5" />
+                  <span className="text-white/70 text-sm">A monthly allowance of confirmed payments</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check size={18} className="text-accent shrink-0 mt-0.5" />
+                  <span className="text-white/70 text-sm">Every feature included</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check size={18} className="text-accent shrink-0 mt-0.5" />
+                  <span className="text-white/70 text-sm">Email warnings before you reach your limit</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check size={18} className="text-accent shrink-0 mt-0.5" />
+                  <span className="text-white/70 text-sm">No card, no commitment</span>
+                </li>
+              </ul>
 
               <div className="mt-auto">
                 <span className="btn-secondary w-full justify-center opacity-60 cursor-not-allowed pointer-events-none inline-flex items-center gap-2">
@@ -374,72 +447,40 @@ export default function PaymentProcessorPage() {
               </div>
             </motion.div>
 
-            {/* Premium Plan */}
+            {/* Paid Packages */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={pricingInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.3 }}
               className="card p-8 border-accent/50 relative overflow-hidden flex flex-col"
             >
-              <h3 className="text-2xl font-bold mb-2">Premium</h3>
+              <h3 className="text-2xl font-bold mb-2">Packages</h3>
               <div className="min-h-[5.5rem]">
                 <p className="text-4xl font-bold mb-1">
-                  $10
-                  <span className="text-lg font-normal text-white/60">/month</span>
+                  Tiered
+                  <span className="text-lg font-normal text-white/60"> by volume</span>
                 </p>
-                <p className="text-white/60 text-sm">Discounted for yearly billing</p>
+                <p className="text-white/60 text-sm">Pricing announced at launch</p>
               </div>
 
-              <div className="space-y-6 mb-8">
-                <div>
-                  <h4 className="text-sm font-semibold text-white/80 mb-3">Limits</h4>
-                  <ul className="space-y-2">
-                    <li className="flex items-start gap-3">
-                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
-                      <span className="text-white/70 text-sm">Unlimited payment links</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
-                      <span className="text-white/70 text-sm">Unlimited transactions</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
-                      <span className="text-white/70 text-sm">Unlimited payouts</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
-                      <span className="text-white/70 text-sm">Transactional emails</span>
-                    </li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="text-sm font-semibold text-white/80 mb-3">Fees</h4>
-                  <ul className="space-y-2">
-                    <li className="flex items-start gap-3">
-                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
-                      <span className="text-white/70 text-sm">1,000 fee-free payments / month</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
-                      <span className="text-white/70 text-sm">1,000 fee-free settlements / month</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
-                      <span className="text-white/70 text-sm">After free tier: 0.1% fee (max $1)</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
-                      <span className="text-white/70 text-sm">No blockchain tx fee on payouts</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <Check size={18} className="text-accent shrink-0 mt-0.5" />
-                      <span className="text-white/70 text-sm">Exchange fee on conversions</span>
-                    </li>
-                  </ul>
-                  <p className="text-white/40 text-xs mt-3">Limits reset each billing cycle</p>
-                </div>
-              </div>
+              <ul className="space-y-2 mb-8">
+                <li className="flex items-start gap-3">
+                  <Check size={18} className="text-accent shrink-0 mt-0.5" />
+                  <span className="text-white/70 text-sm">More confirmed payments every month</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check size={18} className="text-accent shrink-0 mt-0.5" />
+                  <span className="text-white/70 text-sm">Paid in crypto, no card needed</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check size={18} className="text-accent shrink-0 mt-0.5" />
+                  <span className="text-white/70 text-sm">Upgrade any time</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check size={18} className="text-accent shrink-0 mt-0.5" />
+                  <span className="text-white/70 text-sm">Back to Free if you don&apos;t renew</span>
+                </li>
+              </ul>
 
               <div className="mt-auto">
                 <span className="btn-primary w-full justify-center opacity-60 cursor-not-allowed pointer-events-none inline-flex items-center gap-2">
@@ -450,14 +491,27 @@ export default function PaymentProcessorPage() {
             </motion.div>
           </div>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={pricingInView ? { opacity: 1 } : {}}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={pricingInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-center text-white/40 text-sm mt-8 max-w-2xl mx-auto"
+            className="max-w-4xl mx-auto mt-12"
           >
-            Exchange fees apply when settling in a different asset than received. All plans include API access, webhook integrations, and settlement in any supported coin.
-          </motion.p>
+            <h4 className="text-center text-sm font-semibold text-white/80 mb-4">
+              Included in every plan
+            </h4>
+            <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {includedInAllPlans.map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <Check size={18} className="text-accent shrink-0 mt-0.5" />
+                  <span className="text-white/70 text-sm">{item}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="text-center text-white/40 text-sm mt-8 max-w-2xl mx-auto">
+              Your customers pay only the normal BeeZee network fee for their transaction.
+            </p>
+          </motion.div>
         </div>
       </section>
 
@@ -478,8 +532,8 @@ export default function PaymentProcessorPage() {
               Ready to accept crypto payments?
             </h2>
             <p className="text-white/60 text-lg mb-8 max-w-xl mx-auto">
-              Start accepting BZE and BeeZee assets today. Set up your merchant account and
-              integrate our payment processor in minutes.
+              Get paid in BZE and BeeZee assets straight into your own wallet, with no cut taken
+              from your payments.
             </p>
             <span className="btn-primary inline-flex items-center gap-2 opacity-60 cursor-not-allowed pointer-events-none">
               <Clock size={18} />

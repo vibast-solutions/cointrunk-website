@@ -119,7 +119,7 @@ export default function RootLayout({
       {
         '@type': 'Offer',
         name: 'Crypto Payment Processor',
-        description: 'Accept BZE and BeeZee blockchain assets with easy merchant integration.',
+        description: 'Non-custodial payment processor: accept BZE and BeeZee blockchain assets straight into your own wallet.',
         url: 'https://pay.cointrunk.io',
       },
       {
