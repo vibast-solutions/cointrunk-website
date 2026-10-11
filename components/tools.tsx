@@ -25,12 +25,12 @@ const tools = [
     icon: CreditCard,
     title: 'Payment Processor',
     description:
-      'Accept BZE and BeeZee blockchain assets with ease. Simple integration for merchants and businesses.',
+      'Accept BZE and BeeZee blockchain assets straight into your own wallet. Non-custodial: we never hold your funds.',
     features: [
-      'Easy merchant integration',
-      'Support for BZE and other BeeZee assets',
-      'Simple and intuitive checkout flow',
-      'Low transaction fees',
+      'Payments go directly to your wallet',
+      'Payment links, API and webhooks',
+      'One-click checkout for your customers',
+      'No cut taken from your payments',
     ],
     ctaText: 'Start Accepting Payments',
     ctaLink: '/payment-processor',

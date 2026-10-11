@@ -102,7 +102,9 @@ Sections in order:
 
 Dedicated landing page for the payment processor product. Reuses Header and Footer.
 
-Sections: Hero (Coming Soon), Features (6 cards), Supported Assets (BZE, USDC, PHOTON, ATONE, VDL), CTA Banner (Coming Soon).
+The product is **non-custodial**: customers pay straight into the merchant's own wallet, and CoinTrunk never holds keys or coins. Revenue comes only from packages sized by confirmed payments per month, with a free tier and no fee on payments. Never advertise payouts, settlement, conversion or per-payment fees.
+
+Sections: Hero (Coming Soon), How It Works (3 steps), Features (6 cards), Supported Assets (the liquidity rule plus example coins BZE, USDC, PHOTON, VDL), Pricing (Free + volume-tiered packages, prices announced at launch), CTA Banner (Coming Soon).
 
 The homepage tool card links to this page internally. The payment-processor page currently shows a disabled `Coming Soon` call to action in the UI.
 

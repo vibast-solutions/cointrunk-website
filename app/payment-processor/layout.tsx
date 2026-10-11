@@ -3,11 +3,11 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Payment Processor - Accept BZE & Crypto Payments',
   description:
-    'Accept BZE and BeeZee blockchain assets with ease. Simple merchant integration, low fees, and an intuitive checkout flow for your business.',
+    'Accept BZE and BeeZee blockchain assets straight into your own wallet. Non-custodial payment links, API and webhooks, with no cut taken from your payments.',
   openGraph: {
     title: 'CoinTrunk Payment Processor',
     description:
-      'Accept BZE and BeeZee blockchain assets with ease. Simple merchant integration, low fees, and an intuitive checkout flow.',
+      'Accept BZE and BeeZee blockchain assets straight into your own wallet. Non-custodial, with no cut taken from your payments.',
     url: 'https://cointrunk.io/payment-processor',
     images: [
       {
