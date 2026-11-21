@@ -76,6 +76,8 @@ website/
 
 ## Deployment
 
+> **Retired.** cointrunk.io is no longer served from this repository. Merges here do not deploy; the `docker-publish` workflow only builds an image when run by hand.
+
 The site is configured for static export (`output: 'export'` in `next.config.js`). Build the project and deploy the `out` directory to any static hosting provider.
 
 ### Nginx
